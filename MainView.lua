@@ -3,7 +3,7 @@ local Fluent = loadstring(game:HttpGet(
 ))()
 
 local PlayersController = loadstring(game:HttpGet(
-    "https://cdn.jsdelivr.net/gh/Hanhan-23/HanHub@main/PlayersController.lua"
+    "https://cdn.jsdelivr.net/gh/Hanhan-23/HanHub@main/PlayersController.lua?nocache=1"
 ))()
 
 local Window = Fluent:CreateWindow({

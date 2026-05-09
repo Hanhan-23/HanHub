@@ -6,8 +6,6 @@ end
 
 function PlayersController:SetJumpPower(power)
     local humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
-
-    humanoid.UseJumpPower = true
     humanoid.JumpPower = power
 end
 
