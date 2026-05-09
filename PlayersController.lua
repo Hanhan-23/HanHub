@@ -51,9 +51,13 @@ end
 
 -- TELEPORT
 function PlayersController:TeleportToIsland(islandName)
+
+    warn("Selected Island:", islandName)
+
     local character = LocalPlayer.Character
 
     if not character then
+        warn("Character not found")
         return false
     end
 
@@ -61,6 +65,7 @@ function PlayersController:TeleportToIsland(islandName)
         character:FindFirstChild("HumanoidRootPart")
 
     if not hrp then
+        warn("HumanoidRootPart not found")
         return false
     end
 
@@ -68,19 +73,27 @@ function PlayersController:TeleportToIsland(islandName)
         IslandsFolder:FindFirstChild(islandName)
 
     if not island then
+        warn("Island not found")
         return false
     end
+
+    warn("Island Found:", island.Name)
 
     local target =
         island.PrimaryPart
-        or island:FindFirstChildWhichIsA("BasePart")
+        or island:FindFirstChildWhichIsA("BasePart", true)
 
     if not target then
+        warn("No BasePart found inside island")
         return false
     end
 
+    warn("Teleport Target:", target.Name)
+
     hrp.CFrame =
         target.CFrame + Vector3.new(0, 5, 0)
+
+    warn("Teleport success")
 
     return true
 end
