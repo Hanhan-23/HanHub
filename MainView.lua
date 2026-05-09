@@ -2,11 +2,12 @@ local Fluent = loadstring(game:HttpGet(
     "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
 ))()
 
-
-
 local PlayersController = loadstring(game:HttpGet(
     "https://raw.githubusercontent.com/Hanhan-23/HanHub/main/PlayersController.lua?t=" .. tick()
 ))()
+
+local IslandNames = {}
+local selectedIsland
 
 local Window = Fluent:CreateWindow({
     Title = "🛠️ Han Hub",
@@ -34,7 +35,6 @@ local Tabs = {
 }
 
 --SECTION FISHING
-
 Tabs.Fishing:AddSection("Mode Fishing")
 
 Tabs.Fishing:AddToggle("Hectic Mode", 
@@ -95,7 +95,26 @@ Tabs.Players:AddSlider("JumpPower", {
     end
 })
 
+Tabs.Players:AddSection("Players Teleport")
+Tabs.Players:AddDropdown("Teleport", {
+    Title = "Teleport",
+    Description = "Teleport to island",
 
+    Values = PlayersController:GetIslandNames(),
+    Multi = false,
+    Default = 1,
+
+    Callback = function(value)
+        selectedIsland = value
+    end
+})
+Tabs.Players:AddButton({
+    Title = "Teleport to island",
+
+    Callback = function()
+        PlayersController:TeleportToIsland(selectedIsland)
+    end
+})
 
 Window:SelectTab(1)
 
