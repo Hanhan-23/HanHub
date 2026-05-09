@@ -3,7 +3,7 @@ local Fluent = loadstring(game:HttpGet(
 ))()
 
 local PlayersController = loadstring(game:HttpGet(
-    "https://raw.githubusercontent.com/Hanhan-23/HanHub/main/PlayersController.lua"
+    "https://cdn.jsdelivr.net/gh/Hanhan-23/HanHub@main/PlayersController.lua"
 ))()
 
 local Window = Fluent:CreateWindow({
@@ -40,13 +40,12 @@ Tabs.Fishing:AddToggle("Hectic Mode",
     Default = false,
     Callback = function(state)
       if state then
-         PlayersController:SetWalkSpeed(500)
-
          Fluent:Notify({
             Title = "Hectic Mode",
             Content = "ACTIVATED",
             Duration = 5
          })
+         
       else
          print("Toggle Off")
 
