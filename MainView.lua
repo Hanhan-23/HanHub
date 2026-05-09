@@ -31,6 +31,8 @@ local Tabs = {
     })
 }
 
+--SECTION FISHING
+
 Tabs.Fishing:AddSection("Mode Fishing")
 
 Tabs.Fishing:AddToggle("Hectic Mode", 
@@ -45,7 +47,7 @@ Tabs.Fishing:AddToggle("Hectic Mode",
             Content = "ACTIVATED",
             Duration = 5
          })
-         
+
       else
          print("Toggle Off")
 
@@ -57,6 +59,28 @@ Tabs.Fishing:AddToggle("Hectic Mode",
          end
       end 
 })
+
+
+--SECTION PLAYERS
+
+Tabs.Players:AddSection("Players Abilities")
+Tabs.Players:AddSlider("WalkSpeed", {
+    Title = "Walk Speed",
+    Description = "Increase your walk speed",
+
+    Default = 1,
+    Min = 1,
+    Max = 10,
+    Rounding = 1,
+
+    Callback = function(Value)
+        local speed = Value * 5
+
+        PlayersController:SetWalkSpeed(speed)
+    end
+})
+
+
 
 Window:SelectTab(1)
 
