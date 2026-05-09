@@ -2,8 +2,10 @@ local Fluent = loadstring(game:HttpGet(
     "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
 ))()
 
+
+
 local PlayersController = loadstring(game:HttpGet(
-    "https://cdn.jsdelivr.net/gh/Hanhan-23/HanHub@main/PlayersController.lua?nocache=1"
+    "https://raw.githubusercontent.com/Hanhan-23/HanHub/main/PlayersController.lua?t=" .. tick()
 ))()
 
 local Window = Fluent:CreateWindow({
@@ -89,7 +91,7 @@ Tabs.Players:AddSlider("JumpPower", {
     Rounding = 1,
 
     Callback = function(Value)
-        PlayersController.SetJumpPower(Value)
+        PlayersController:SetJumpPower(Value)
     end
 })
 

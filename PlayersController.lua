@@ -4,7 +4,7 @@ function PlayersController:SetWalkSpeed(speed)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
 end
 
-PlayersController.SetJumpPower = function(power)
+function PlayersController:SetJumpPower(power)
     local player = game.Players.LocalPlayer
 
     if player.Character and player.Character:FindFirstChild("Humanoid") then
