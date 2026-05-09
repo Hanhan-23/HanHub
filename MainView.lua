@@ -2,10 +2,10 @@ local Fluent = loadstring(game:HttpGet(
     "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
 ))()
 
--- local Controller = loadstring(game:HttpGet(
---     "https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"
--- ))()
-
+local PlayersController = loadstring(game:HttpGet(
+    "https://github.com/Hanhan-23/HanHub/blob/main/PlayersController.lua"
+))()
+-- sdas
 local Window = Fluent:CreateWindow({
     Title = "🛠️ Han Hub",
     SubTitle = "Premium Script Hub",
@@ -40,7 +40,7 @@ Tabs.Fishing:AddToggle("Hectic Mode",
     Default = false,
     Callback = function(state)
       if state then
-         print("Toggle On")
+         PlayersController:SetWalkSpeed(500)
 
          Fluent:Notify({
             Title = "Hectic Mode",
