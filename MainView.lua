@@ -3,9 +3,9 @@ local Fluent = loadstring(game:HttpGet(
 ))()
 
 local PlayersController = loadstring(game:HttpGet(
-    "https://github.com/Hanhan-23/HanHub/blob/main/PlayersController.lua"
+    "https://raw.githubusercontent.com/Hanhan-23/HanHub/main/PlayersController.lua"
 ))()
--- sdas
+
 local Window = Fluent:CreateWindow({
     Title = "🛠️ Han Hub",
     SubTitle = "Premium Script Hub",
