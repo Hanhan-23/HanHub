@@ -89,7 +89,7 @@ Tabs.Players:AddSlider("JumpPower", {
     Rounding = 1,
 
     Callback = function(Value)
-        PlayersController:SetJumpPower(Value)
+        PlayersController.SetJumpPower(Value)
     end
 })
 
