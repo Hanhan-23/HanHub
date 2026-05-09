@@ -89,9 +89,7 @@ Tabs.Players:AddSlider("JumpPower", {
     Rounding = 1,
 
     Callback = function(Value)
-        local jump = Value * 50
-
-        PlayersController:SetJumpPower(jump)
+        PlayersController:SetJumpPower(Value)
     end
 })
 
