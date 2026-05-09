@@ -62,7 +62,6 @@ Tabs.Fishing:AddToggle("Hectic Mode",
 
 
 --SECTION PLAYERS
-
 Tabs.Players:AddSection("Players Abilities")
 Tabs.Players:AddSlider("WalkSpeed", {
     Title = "Walk Speed",
@@ -74,9 +73,25 @@ Tabs.Players:AddSlider("WalkSpeed", {
     Rounding = 1,
 
     Callback = function(Value)
-        local speed = Value * 5
+        local speed = Value * 16
 
         PlayersController:SetWalkSpeed(speed)
+    end
+})
+
+Tabs.Players:AddSlider("JumpPower", {
+    Title = "Jump Power",
+    Description = "Increase your jump height",
+
+    Default = 1,
+    Min = 1,
+    Max = 5,
+    Rounding = 1,
+
+    Callback = function(Value)
+        local jump = Value * 50
+
+        PlayersController:SetJumpPower(jump)
     end
 })
 
