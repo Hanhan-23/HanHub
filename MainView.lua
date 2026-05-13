@@ -129,6 +129,14 @@ Tabs.Players:AddDropdown("TeleportLocation", {
         selectedLocation = value
     end
 })
+Tabs.Players:AddButton({
+    Title = "Teleport to location",
+
+    Callback = function()
+        PlayersController:TeleportToLocation(selectedLocation)
+    end
+})
+
 
 Window:SelectTab(1)
 

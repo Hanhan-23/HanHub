@@ -108,13 +108,37 @@ function PlayersController:TeleportToIsland(islandName)
 end
 
 function PlayersController:TeleportToLocation(locationName)
-    local character = game.Players.LocalPlayer.Character
-
-    local location = workspace.Locations:FindFirstChild(locationName)
-
-    if character and location then
-        character:PivotTo(location:GetPivot())
+    if not locationName then
+        warn("No location selected")
+        return false
     end
+
+    local character = LocalPlayer.Character
+
+    if not character then
+        return false
+    end
+
+    local location =
+        LocationsFolder:FindFirstChild(locationName)
+
+    if not location then
+        warn("Location not found:", locationName)
+        return false
+    end
+
+    local target =
+        location:FindFirstChild("Spawn", true)
+        or location:FindFirstChildWhichIsA("BasePart", true)
+
+    if not target then
+        warn("No target part found")
+        return false
+    end
+
+    character:PivotTo(target.CFrame + Vector3.new(0,5,0))
+
+    return true
 end
 
 return PlayersController
