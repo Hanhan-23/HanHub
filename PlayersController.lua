@@ -49,6 +49,15 @@ function PlayersController:GetIslandNames()
     return islandNames
 end
 
+-- GET LOCATIONS
+function PlayersController:GetLocationsNames()
+    local locationsNames = {}
+
+    for _, location in pairs(LocationsFolder:GetChildren()) do
+        table.insert(locationsNames, location.Name)
+    end
+end 
+
 -- TELEPORT
 function PlayersController:TeleportToIsland(islandName)
 
@@ -133,14 +142,5 @@ function PlayersController:TeleportToLocation(locationName)
 
     return true
 end
-
--- GET LOCATIONS
-function PlayersController:GetLocationsNames()
-    local locationsNames = {}
-
-    for _, location in pairs(LocationsFolder:GetChildren()) do
-        table.insert(locationsNames, location.Name)
-    end
-end 
 
 return PlayersController

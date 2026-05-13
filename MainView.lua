@@ -132,7 +132,7 @@ Tabs.Players:AddButton({
     Title = "Teleport to location",
 
     Callback = function()
-        PlayersController:TeleportToIsland(selectedLocation)
+        PlayersController:TeleportToLocation(selectedLocation)
     end
 })
 
