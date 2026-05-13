@@ -109,18 +109,6 @@ Tabs.Players:AddDropdown("Teleport", {
         selectedIsland = value
     end
 })
-Tabs.Players:AddDropdown("Teleport Location", {
-    Title = "Teleport",
-    Description = "Teleport to Location in Islands",
-
-    Values = PlayersController:GetLocationsNames(),
-    Multi = false,
-    Default = 1,
-
-    Callback = function(value)
-        selectedLocation = value
-    end
-})
 Tabs.Players:AddButton({
     Title = "Teleport to island",
 
@@ -128,11 +116,17 @@ Tabs.Players:AddButton({
         PlayersController:TeleportToIsland(selectedIsland)
     end
 })
-Tabs.Players:AddButton({
-    Title = "Teleport to location",
 
-    Callback = function()
-        PlayersController:TeleportToLocation(selectedLocation)
+Tabs.Players:AddDropdown("TeleportLocation", {
+    Title = "Teleport location",
+    Description = "Teleport to location on island",
+
+    Values = PlayersController:GetLocationsNames(),
+    Multi = false,
+    Default = PlayersController:GetLocationsNames()[1],
+
+    Callback = function(value)
+        selectedLocation = value
     end
 })
 

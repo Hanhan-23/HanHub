@@ -53,10 +53,16 @@ end
 function PlayersController:GetLocationsNames()
     local locationsNames = {}
 
-    for _, location in pairs(LocationsFolder:GetChildren()) do
+    for _, location in ipairs(LocationsFolder:GetChildren()) do
+        print(location.Name)
+
         table.insert(locationsNames, location.Name)
     end
-end 
+
+    print("Total Locations:", #locationsNames)
+
+    return locationsNames
+end
 
 -- TELEPORT
 function PlayersController:TeleportToIsland(islandName)
@@ -102,45 +108,13 @@ function PlayersController:TeleportToIsland(islandName)
 end
 
 function PlayersController:TeleportToLocation(locationName)
+    local character = game.Players.LocalPlayer.Character
 
-    local character = LocalPlayer.Character
+    local location = workspace.Locations:FindFirstChild(locationName)
 
-    if not character then
-        return false
+    if character and location then
+        character:PivotTo(location:GetPivot())
     end
-
-    local hrp =
-        character:FindFirstChild("HumanoidRootPart")
-
-    if not hrp then
-        return false
-    end
-
-    local location =
-        LocationsFolder:FindFirstChild(locationName)
-
-    if not location then
-        warn("location not found:", locationName)
-        return false
-    end
-
-    local target =
-        location:FindFirstChild("Spawn", true)
-        or location:FindFirstChild("SpawnLocation", true)
-        or location.PrimaryPart
-        or location:FindFirstChildWhichIsA("BasePart", true)
-
-    if not target then
-        warn("No teleport target found")
-        return false
-    end
-
-    warn("Teleporting to:", location.Name)
-
-    hrp.CFrame =
-        target.CFrame + Vector3.new(0, 10, 0)
-
-    return true
 end
 
 return PlayersController
