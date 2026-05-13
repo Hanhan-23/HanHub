@@ -4,7 +4,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 local IslandsFolder = workspace:WaitForChild("Islands")
-
+local LocationsFolder = workspace:WaitForChild("Locations")
 -- WALK SPEED
 function PlayersController:SetWalkSpeed(speed)
     local character = LocalPlayer.Character
@@ -91,5 +91,56 @@ function PlayersController:TeleportToIsland(islandName)
 
     return true
 end
+
+function PlayersController:TeleportToLocation(locationName)
+
+    local character = LocalPlayer.Character
+
+    if not character then
+        return false
+    end
+
+    local hrp =
+        character:FindFirstChild("HumanoidRootPart")
+
+    if not hrp then
+        return false
+    end
+
+    local location =
+        LocationsFolder:FindFirstChild(locationName)
+
+    if not location then
+        warn("location not found:", locationName)
+        return false
+    end
+
+    local target =
+        location:FindFirstChild("Spawn", true)
+        or location:FindFirstChild("SpawnLocation", true)
+        or location.PrimaryPart
+        or location:FindFirstChildWhichIsA("BasePart", true)
+
+    if not target then
+        warn("No teleport target found")
+        return false
+    end
+
+    warn("Teleporting to:", location.Name)
+
+    hrp.CFrame =
+        target.CFrame + Vector3.new(0, 10, 0)
+
+    return true
+end
+
+-- GET LOCATIONS
+function PlayersController:GetLocationsNames()
+    local locationsNames = {}
+
+    for _, location in pairs(LocationsFolder:GetChildren()) do
+        table.insert(locationsNames, location.Name)
+    end
+end 
 
 return PlayersController

@@ -8,6 +8,7 @@ local PlayersController = loadstring(game:HttpGet(
 
 local IslandNames = {}
 local selectedIsland
+local selectedLocation
 
 local Window = Fluent:CreateWindow({
     Title = "🛠️ Han Hub",
@@ -108,11 +109,30 @@ Tabs.Players:AddDropdown("Teleport", {
         selectedIsland = value
     end
 })
+Tabs.Players:AddDropdown("Teleport Location", {
+    Title = "Teleport",
+    Description = "Teleport to Location in Islands",
+
+    Values = PlayersController:GetLocationsNames(),
+    Multi = false,
+    Default = 1,
+
+    Callback = function(value)
+        selectedLocation = value
+    end
+})
 Tabs.Players:AddButton({
     Title = "Teleport to island",
 
     Callback = function()
         PlayersController:TeleportToIsland(selectedIsland)
+    end
+})
+Tabs.Players:AddButton({
+    Title = "Teleport to location",
+
+    Callback = function()
+        PlayersController:TeleportToIsland(selectedLocation)
     end
 })
 
