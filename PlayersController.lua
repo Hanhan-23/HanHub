@@ -108,14 +108,15 @@ function PlayersController:TeleportToIsland(islandName)
 end
 
 function PlayersController:TeleportToLocation(locationName)
-    if not locationName then
-        warn("No location selected")
-        return false
-    end
-
     local character = LocalPlayer.Character
 
     if not character then
+        return false
+    end
+
+    local hrp = character:FindFirstChild("HumanoidRootPart")
+
+    if not hrp then
         return false
     end
 
@@ -127,16 +128,7 @@ function PlayersController:TeleportToLocation(locationName)
         return false
     end
 
-    local target =
-        location:FindFirstChild("Spawn", true)
-        or location:FindFirstChildWhichIsA("BasePart", true)
-
-    if not target then
-        warn("No target part found")
-        return false
-    end
-
-    character:PivotTo(target.CFrame + Vector3.new(0,5,0))
+    hrp.CFrame = location.CFrame + Vector3.new(0,5,0)
 
     return true
 end
